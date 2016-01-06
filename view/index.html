@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO</title>
+
+    <link rel="stylesheet" type="text/css" href="../node_modules/angular-material/angular-material.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+
+
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-animate/angular-animate.js"></script>
+    <script src="../node_modules/angular-aria/angular-aria.js"></script>
+    <script src="../node_modules/angular-material/angular-material.js"></script>
+    <script src="../node_modules/angular-material-icons/angular-material-icons.js"></script>
+
+    <script src="../js/app.js"></script>
+
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="toDoAppController as todo" layout="column">
+
+    <md-toolbar class="md-primary" layout="row" layout-align="center center">
+        MATERIAL TODO APP
+    </md-toolbar>
+
+    <div layout="row" layout-align="center center">
+        <div flex-gt-sm="50">
+
+            <form ng-submit="todo.addTask(todo.myTask)" layout="row" layout-align="center start" layout-fill>
+
+                <md-input-container flex>
+                    <label>ADD TODO ITEM</label>
+                    <input ng-model="todo.myTask"/>
+
+                </md-input-container>
+                <md-button class="md-warm md-fab" ng-click="todo.addTask(todo.myTask)">
+                    <ng-md-icon  icon="add" style="fill:white" size="20"></ng-md-icon>
+                </md-button>
+            </form>
+
+            <div layout="column" layout-align="center end">
+                <p>{{todo.allTaskLength}} of {{todo.completedTaskLength}} remaining[<span><a>Archive</a></span>]</p>
+            </div>
+
+
+            <div ng-repeat="task in todo.allTasks track by $index" class="checkboxAndtxtPadding" layout="column">
+
+                <md-checkbox ng-click="todo.selectedTask(task)" layout="row" layout-wrap>
+                    <span flex>{{task}} </span>
+                </md-checkbox>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
